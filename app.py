@@ -17,7 +17,7 @@ app.config.from_object(__name__)
 db_wrapper = FlaskDB(app)
 peewee_db = db_wrapper.database
 
-#@app.route('/api/v1/events', methods=['GET'])
+@app.route('/api/v1/events', methods=['GET'])
 @app.route('/api/v1/events/<int:page>', methods=['GET'])
 def events(page=0):
     limit  = 10

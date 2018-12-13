@@ -8,7 +8,7 @@ from flask import jsonify
 from peewee import *
 import json
 from playhouse.flask_utils import FlaskDB
-# from playhouse.shortcuts import model_to_dict
+from playhouse.shortcuts import model_to_dict
 
 DATABASE = SqliteDatabase('data.db')
 
@@ -24,28 +24,8 @@ def events(page=1):
 
     delimiter = page * 30
     rows = Event.select()
-
-    data = []
-    data = [event_dict(row) for row in rows]
-    
+    data = [model_to_dict(row) for row in rows]
     return jsonify({'data': data})
-
-def event_dict(row={}):
-    return { 'id':                       row.id,
-             'status':                   row.status,
-             'start_date':               row.start_date,
-             'end_date':                 row.end_date,
-             'description':              row.description,
-             'official':                 row.official,
-             'visibility':               row.visibility,
-             'guests_can_invite_others': row.guests_can_invite_others,
-             'modified_date':            row.modified_date,
-             'created_date':             row.created_date,
-             'participant_count':        row.participant_count,
-             'reason_for_private':       row.reason_for_private,
-             'order_email_template':     row.order_email_template,
-             'name':                     row.name
-             }
 
 class Event(db_wrapper.Model):
     status                   = CharField()

@@ -1,3 +1,8 @@
+"""
+RUN WITH:
+FLASK_APP=app.py FLASK_ENV=development flask run 
+"""
+
 from flask import Flask
 from flask import jsonify
 from peewee import *

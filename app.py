@@ -20,11 +20,12 @@ peewee_db = db_wrapper.database
 @app.route('/api/v1/events', methods=['GET'])
 @app.route('/api/v1/events/<int:page>', methods=['GET'])
 def events(page=0):
-    limit  = 10
-    offset = 0
+    delimiter = 10
+    offset    = 0
+    limit     = delimiter
     if page > 0:
-        limit  = page * 10
-        offset = page * 10
+        limit  = page * delimiter
+        offset = page * delimiter
 
     rows   = Event.select().limit(limit).offset(offset)
     events = [model_to_dict(row) for row in rows]

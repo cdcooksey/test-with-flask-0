@@ -21,10 +21,12 @@ peewee_db = db_wrapper.database
 @app.route('/api/v1/events', methods=['GET'])
 @app.route('/api/v1/events/<int:page>', methods=['GET'])
 def events(page=1):
+
     delimiter = page * 30
+    rows = Event.select()
 
     data = []
-    data = [event_dict(row) for row in Event.select().get_page()]
+    data = [event_dict(row) for row in rows]
     
     return jsonify({'data': data})
 

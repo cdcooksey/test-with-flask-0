@@ -17,6 +17,13 @@ app.config.from_object(__name__)
 db_wrapper = FlaskDB(app)
 peewee_db = db_wrapper.database
 
+@app.route('/api/v1/events/<int:eventId>/details', methods=['GET'])
+def events_details(eventId=0):
+    event = Event.select().where(Event.id == eventId).get()
+    return jsonify({
+        'data': model_to_dict(event)
+        })
+
 @app.route('/api/v1/events', methods=['GET'])
 @app.route('/api/v1/events/<int:page>', methods=['GET'])
 def events(page=0):

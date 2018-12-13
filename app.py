@@ -29,7 +29,7 @@ def events(page=0):
     rows   = Event.select().limit(limit).offset(offset)
     events = [model_to_dict(row) for row in rows]
 
-    response = jsonify({
+    return jsonify({
         'data': events,
         'meta': {
             'page': page,
@@ -38,8 +38,6 @@ def events(page=0):
             'results': rows.count()
             }
         })
-
-    return response
 
 class Event(db_wrapper.Model):
     status                   = CharField()

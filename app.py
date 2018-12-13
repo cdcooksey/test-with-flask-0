@@ -35,7 +35,7 @@ def events_summary():
         offset = page * delimiter
 
     rows   = Event.select(Event.id, Event.name).limit(limit).offset(offset)
-    events = [model_to_dict(row) for row in rows]
+    events = [{'id': row.id, 'name': row.name} for row in rows]
 
     return jsonify({
         'data': events,

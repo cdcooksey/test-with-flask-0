@@ -17,7 +17,7 @@ app.config.from_object(__name__)
 db_wrapper = FlaskDB(app)
 peewee_db = db_wrapper.database
 
-@app.route('/api/v1/events/<int:eventId>/details', methods=['GET'])
+@app.route('/api/v1/events/<int:eventId>', methods=['GET'])
 def events_details(eventId=0):
     event = Event.select().where(Event.id == eventId).get()
     return jsonify({
@@ -25,8 +25,8 @@ def events_details(eventId=0):
         })
 
 @app.route('/api/v1/events', methods=['GET'])
-@app.route('/api/v1/events/<int:page>', methods=['GET'])
-def events(page=0):
+def events_summary():
+    page      = int(request.args.get('page', '0'))
     delimiter = 10
     offset    = 0
     limit     = delimiter
@@ -34,7 +34,7 @@ def events(page=0):
         limit  = page * delimiter
         offset = page * delimiter
 
-    rows   = Event.select().limit(limit).offset(offset)
+    rows   = Event.select(Event.id, Event.name).limit(limit).offset(offset)
     events = [model_to_dict(row) for row in rows]
 
     return jsonify({

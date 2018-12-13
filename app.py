@@ -21,37 +21,38 @@ peewee_db = db_wrapper.database
 def hello():
     row = Event.select().get()
     data = {
-            'id':           row.id,
-            'status':       row.status,
-            'start_date':   row.start_date,
-            'end_date':     row.end_date,
-            'description':  row.description,
-            'official':     row.official
+            'id':                       row.id,
+            'status':                   row.status,
+            'start_date':               row.start_date,
+            'end_date':                 row.end_date,
+            'description':              row.description,
+            'official':                 row.official,
+            'visibility':               row.visibility,
+            'guests_can_invite_others': row.guests_can_invite_others,
+            'modified_date':            row.modified_date,
+            'created_date':             row.created_date,
+            'participant_count':        row.participant_count,
+            'reason_for_private':       row.reason_for_private,
+            'order_email_template':     row.order_email_template,
+            'name':                     row.name
             }
     
     return jsonify({'data': data})
 
-# CREATE TABLE events (
-#     id integer NOT NULL,
-#     status character varying,
-#     start_date timestamp without time zone,
-#     end_date timestamp without time zone,
-#     description character varying,
-#     official boolean,
-#     visibility character varying,
-#     guests_can_invite_others boolean,
-#     modified_date timestamp without time zone,
-#     created_date timestamp without time zone,
-#     participant_count numeric,
-#     reason_for_private character varying,
-#     order_email_template character varying,
-#     name character varying
 class Event(db_wrapper.Model):
-    status = CharField()
-    start_date = DateField()
-    end_date = DateField()
-    description = CharField()
-    official = BooleanField(default=True)
+    status                   = CharField()
+    start_date               = DateField()
+    end_date                 = DateField()
+    description              = CharField()
+    official                 = BooleanField(default = True)
+    visibility               = CharField()
+    guests_can_invite_others = CharField()
+    modified_date            = DateField()
+    created_date             = DateField()
+    participant_count        = IntegerField()
+    reason_for_private       = CharField()
+    order_email_template     = CharField()
+    name                     = CharField()
 
     class Meta:
         table_name = 'events'

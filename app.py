@@ -19,10 +19,13 @@ peewee_db = db_wrapper.database
 
 @app.route('/api/v1/events/<int:eventId>', methods=['GET'])
 def events_details(eventId=0):
-    event = Event.select().where(Event.id == eventId).get()
-    return jsonify({
-        'data': model_to_dict(event)
-        })
+    try:
+        event = Event.select().where(Event.id == eventId).get()
+        response = {'data': model_to_dict(event)}
+    except DoesNotExist:
+        response = {'error': 'No instance of MyModel exists at {}'.format(eventId)}
+
+    return jsonify(response)
 
 @app.route('/api/v1/events', methods=['GET'])
 def events_summary():

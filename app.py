@@ -4,7 +4,7 @@ FLASK_APP=app.py FLASK_ENV=development flask run
 """
 
 import json
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, abort, make_response
 from peewee import *
 from playhouse.flask_utils import FlaskDB
 from playhouse.shortcuts import model_to_dict
@@ -23,7 +23,7 @@ def events_details(eventId=0):
         event = Event.select().where(Event.id == eventId).get()
         response = {'data': model_to_dict(event)}
     except DoesNotExist:
-        response = {'error': 'No instance of MyModel exists at {}'.format(eventId)}
+        abort(404)
 
     return jsonify(response)
 
@@ -49,6 +49,10 @@ def events_summary():
             'results': rows.count()
             }
         })
+
+@app.errorhandler(404)
+def not_found(error):
+    return make_response(jsonify({'error': 'Not found'}), 404)
 
 class Event(db_wrapper.Model):
     status                   = CharField()

@@ -24,11 +24,10 @@ def events_details(eventId=0):
                     .select()
                     .join(Location, on=(Location.event == Event.id))
                     .where(Event.id == eventId).get())
-
-        response = {'data': model_to_dict(event)}
     except DoesNotExist:
         abort(404)
 
+    response = {'data': model_to_dict(event)}
     return jsonify(response)
 
 @app.route('/api/v1/events', methods=['GET'])

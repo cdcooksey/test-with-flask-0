@@ -63,6 +63,21 @@ def events_summary():
 def events_summary_response(events):
     return [{'id': event.id, 'name': event.name} for event in events]
 
+@app.route('/api/v1/events/<int:eventId>', methods=['PUT'])
+def rsvp(eventId=0):
+    try:
+        event = Event.select().where(Event.id == eventId).get()
+        new_participant_count = event.participant_count + 1
+
+        res = (Event
+                    .update({Event.participant_count: new_participant_count})
+                    .where(Event.id == eventId)
+                    .execute())
+    except DoesNotExist:
+        abort(404)
+
+    return jsonify(event_details_response(event))
+
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)

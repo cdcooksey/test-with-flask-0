@@ -67,10 +67,8 @@ def events_summary_response(events):
 def rsvp(eventId=0):
     try:
         event = Event.select().where(Event.id == eventId).get()
-        new_participant_count = event.participant_count + 1
-
         res = (Event
-                    .update({Event.participant_count: new_participant_count})
+                    .update({Event.participant_count: event.participant_count + 1})
                     .where(Event.id == eventId)
                     .execute())
     except DoesNotExist:

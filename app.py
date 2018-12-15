@@ -20,7 +20,7 @@ peewee_db = db_wrapper.database
 @app.route('/api/v1/events/<int:eventId>', methods=['GET'])
 def events_details(eventId=0):
     try:
-        event = Event.select().where(Event.id == eventId).get()
+        event = Event.select().join(Location, on=(Location.event == Event.id)).where(Event.id == eventId).get()
         response = {'data': model_to_dict(event)}
     except DoesNotExist:
         abort(404)
@@ -37,7 +37,7 @@ def events_summary():
         limit  = page * delimiter
         offset = page * delimiter
 
-    rows   = Event.select(Event.id, Event.name).limit(limit).offset(offset)
+    rows   = Event.select().join(Location, on=(Location.event == Event.id)).limit(limit).offset(offset)
     events = [{'id': row.id, 'name': row.name} for row in rows]
 
     return jsonify({
@@ -71,3 +71,32 @@ class Event(db_wrapper.Model):
 
     class Meta:
         table_name = 'events'
+
+class Location(db_wrapper.Model):
+    event                   = ForeignKeyField(Event, backref='events')
+    contact_phone           = CharField()
+    primary                 = BooleanField()
+    contact_email           = CharField()
+    contact_family_name     = CharField()
+    contact_given_name      = CharField()
+    host_given_name         = CharField()
+    timezone                = CharField()
+    city                    = CharField()
+    locality                = CharField()
+    state                   = CharField()
+    address_type            = CharField()
+    latitude                = CharField()
+    longitude               = CharField()
+    accuracy                = CharField()
+    address1                = CharField()
+    address2                = CharField()
+    postal_code             = CharField()
+    country                 = CharField()
+    modified_date           = DateField()
+    created_date            = DateField()
+    number_spaces_remaining = IntegerField()
+    spaces_remaining        = BooleanField()
+    name                    = CharField()
+
+    class Meta:
+        table_name = 'locations'

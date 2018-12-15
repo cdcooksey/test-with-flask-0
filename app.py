@@ -20,7 +20,11 @@ peewee_db = db_wrapper.database
 @app.route('/api/v1/events/<int:eventId>', methods=['GET'])
 def events_details(eventId=0):
     try:
-        event = Event.select().join(Location, on=(Location.event == Event.id)).where(Event.id == eventId).get()
+        event = (Event
+                    .select()
+                    .join(Location, on=(Location.event == Event.id))
+                    .where(Event.id == eventId).get())
+
         response = {'data': model_to_dict(event)}
     except DoesNotExist:
         abort(404)
@@ -37,7 +41,12 @@ def events_summary():
         limit  = page * delimiter
         offset = page * delimiter
 
-    rows   = Event.select().join(Location, on=(Location.event == Event.id)).limit(limit).offset(offset)
+    rows   = (Event
+                .select()
+                .join(Location, on=(Location.event == Event.id))
+                .limit(limit)
+                .offset(offset))
+
     events = [{'id': row.id, 'name': row.name} for row in rows]
 
     return jsonify({

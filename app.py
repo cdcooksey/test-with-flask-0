@@ -18,7 +18,7 @@ db_wrapper = FlaskDB(app)
 peewee_db = db_wrapper.database
 
 @app.route('/api/v1/events/<int:eventId>', methods=['GET'])
-def events_details(eventId=0):
+def event_details(eventId=0):
     try:
         event = (Event
                     .select()
@@ -27,8 +27,10 @@ def events_details(eventId=0):
     except DoesNotExist:
         abort(404)
 
-    response = {'data': model_to_dict(event)}
-    return jsonify(response)
+    return jsonify(event_details_response(event))
+
+def event_details_response(event):
+    return {'data': model_to_dict(event)}
 
 @app.route('/api/v1/events', methods=['GET'])
 def events_summary():
@@ -40,13 +42,13 @@ def events_summary():
         limit  = page * delimiter
         offset = page * delimiter
 
-    rows   = (Event
-                .select()
-                .join(Location, on=(Location.event == Event.id))
-                .limit(limit)
-                .offset(offset))
+    rows = (Event
+              .select()
+              .join(Location, on=(Location.event == Event.id))
+              .limit(limit)
+              .offset(offset))
 
-    events = [{'id': row.id, 'name': row.name} for row in rows]
+    events = events_summary_response(rows)
 
     return jsonify({
         'data': events,
@@ -57,6 +59,9 @@ def events_summary():
             'results': rows.count()
             }
         })
+
+def events_summary_response(events):
+    return [{'id': event.id, 'name': event.name} for event in events]
 
 @app.errorhandler(404)
 def not_found(error):

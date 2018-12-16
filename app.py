@@ -43,7 +43,7 @@ def events_summary():
         offset = page * delimiter
 
     rows = (Event
-              .select()
+              .select(Event.id, Event.name, Location.name)
               .join(Location, on=(Location.event == Event.id))
               .limit(limit)
               .offset(offset))
@@ -61,7 +61,7 @@ def events_summary():
     return make_response(response, 200)
 
 def events_summary_response(events):
-    return [{'id': event.id, 'name': event.name} for event in events]
+    return [{'id': event.id,'name': event.name, 'venue': event.location.name} for event in events]
 
 @app.route('/api/v1/events/<int:eventId>', methods=['PUT'])
 def rsvp(eventId=0):

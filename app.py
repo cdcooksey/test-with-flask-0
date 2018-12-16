@@ -24,10 +24,10 @@ def event_details(eventId=0):
                     .select()
                     .join(Location, on=(Location.event == Event.id))
                     .where(Event.id == eventId).get())
+        response = jsonify(event_details_response(event))
     except DoesNotExist:
         abort(404)
-
-    return jsonify(event_details_response(event))
+    return make_response(response, 200)
 
 def event_details_response(event):
     return {'data': model_to_dict(event)}
@@ -49,16 +49,16 @@ def events_summary():
               .offset(offset))
 
     events = events_summary_response(rows)
-
-    return jsonify({
-        'data': events,
-        'meta': {
-            'page': page,
-            'offset': offset,
-            'limit': limit,
-            'results': rows.count()
+    response = jsonify({
+                    'data': events,
+                    'meta': {
+                        'page': page,
+                        'offset': offset,
+                        'limit': limit,
+                        'results': rows.count()
             }
         })
+    return make_response(response, 200)
 
 def events_summary_response(events):
     return [{'id': event.id, 'name': event.name} for event in events]
@@ -74,7 +74,7 @@ def rsvp(eventId=0):
     except DoesNotExist:
         abort(404)
 
-    return jsonify(event_details_response(event))
+    return make_response('', 204)
 
 @app.errorhandler(404)
 def not_found(error):

@@ -45,7 +45,6 @@ sudo apt-get update
 sudo apt-get install -y python-software-properties software-properties-common apt-transport-https
 sudo apt-get update
 sudo apt-get install -y sqlite3
-sudo apt-get install -y nodejs npm
 cd /vagrant
 
 SCRIPT

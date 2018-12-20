@@ -40,11 +40,13 @@ export class AppComponent implements OnInit {
 	previousPage() {
 		if(this.page > 0) {
 			this.page--;
+			this.getEvents();
 		}
 		return false;
 	}
 
 	nextPage() {
 		this.page++;
+		this.getEvents();
 	}
 }

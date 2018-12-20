@@ -10,9 +10,11 @@ import { EventsService } from './events.service';
 export class AppComponent implements OnInit {
   title = 'DNC Events Challenge';
 	page: number;
+	events: Array<any>;
 
   constructor(private eventsService: EventsService) {
 		this.page = 0;
+		this.events = [];
 	}
 
 	ngOnInit() {
@@ -20,6 +22,18 @@ export class AppComponent implements OnInit {
 	}
 
 	getEvents(): void {
-		this.eventsService.getEvents(this.page).subscribe();
+		this.eventsService
+			.getEvents(this.page)
+			.subscribe(events => this.addEvents(events));
+	}
+
+	addEvents(events: Array<any>) {
+		for(let event of events) {
+			this.events.push(event);
+		}
+	}
+
+	onSelect() {
+		return 'do nothing';
 	}
 }

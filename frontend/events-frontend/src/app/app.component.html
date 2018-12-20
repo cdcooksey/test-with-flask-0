@@ -6,15 +6,14 @@
 
 <h2>Event list</h2>
 <br />
-<h3>Page: {{ page }}</h3>
-<br />
 <h3>
-	<span (click)="previousPage()">Previous</span>
-	<span (click)="nextPage()">Next Page</span>
+	Page: {{ page }}<br />
+	# of events found: {{ events.length }}<br />
+	<span (click)="previousPage()">Previous</span><br />
+	<span (click)="nextPage()">Next Page</span><br />
 </h3>
 
 <ul>
-	{{ events.length }}
 	<li *ngFor="let event of events" (click)="onSelect(event)">
 		<strong>Event</strong> {{ event.name }}
 		<br />

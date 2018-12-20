@@ -6,5 +6,11 @@
 
 <h2>Event list</h2>
 
-
-
+<ul>
+	{{ events.length }}
+	<li *ngFor="let event of events" (click)="onSelect(event)">
+		<strong>Event</strong> {{ event.name }}
+		<br />
+		<strong>Venue</strong> {{ event.venue }}
+	</li>
+<ul>

@@ -38,16 +38,20 @@ export class AppComponent implements OnInit {
 		return 'do nothing';
 	}
 
-	previousPage() {
-		if(this.page > 0) {
-			this.page--;
-			this.getEvents();
-		}
-		return false;
-	}
+  previousPage() {
+    if(this.page > 0) {
+      this.page--;
+      this.getEvents();
+    }
+    return false;
+  }
 
-	nextPage() {
-		this.page++;
-		this.getEvents();
-	}
+  nextPage() {
+    this.page++;
+    this.getEvents();
+  }
+
+  attend(event: any) {
+    console.log(event);
+  }
 }

@@ -8,7 +8,8 @@ import { EventsService } from './events.service';
 })
 
 export class AppComponent implements OnInit {
-  title = 'DNC Events Challenge';
+	title = 'Events';
+  subtitle = 'DNC Code Challenge';
 	page: number;
 	events: Array<any>;
 

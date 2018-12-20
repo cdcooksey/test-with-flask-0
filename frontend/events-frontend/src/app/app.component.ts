@@ -36,4 +36,15 @@ export class AppComponent implements OnInit {
 	onSelect() {
 		return 'do nothing';
 	}
+
+	previousPage() {
+		if(this.page > 0) {
+			this.page--;
+		}
+		return false;
+	}
+
+	nextPage() {
+		this.page++;
+	}
 }

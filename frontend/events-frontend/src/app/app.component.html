@@ -5,6 +5,13 @@
 </div>
 
 <h2>Event list</h2>
+<br />
+<h3>Page: {{ page }}</h3>
+<br />
+<h3>
+	<span (click)="previousPage()">Previous</span>
+	<span (click)="nextPage()">Next Page</span>
+</h3>
 
 <ul>
 	{{ events.length }}

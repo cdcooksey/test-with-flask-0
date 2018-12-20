@@ -22,21 +22,21 @@ export class AppComponent implements OnInit {
 		return this.getEvents();
 	}
 
-	getEvents(): void {
-		this.eventsService
-			.getEvents(this.page)
-			.subscribe(events => this.addEvents(events));
-	}
+  getEvents(): void {
+    this.eventsService
+      .getEvents(this.page)
+      .subscribe(events => this.addEvents(events));
+  }
 
-	addEvents(events: Array<any>) {
-		for(let event of events) {
-			this.events.push(event);
-		}
-	}
+  addEvents(events: Array<any>) {
+    for(let event of events) {
+      this.events.push(event);
+    }
+  }
 
-	onSelect() {
-		return 'do nothing';
-	}
+  onSelect() {
+    return 'do nothing';
+  }
 
   previousPage() {
     if(this.page > 0) {

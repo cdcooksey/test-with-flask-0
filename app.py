@@ -50,16 +50,7 @@ def events_summary():
               .limit(limit)
               .offset(offset))
 
-    events = events_summary_response(rows)
-    response = jsonify({
-                    'data': events,
-                    'meta': {
-                        'page': page,
-                        'offset': offset,
-                        'limit': limit,
-                        'results': rows.count()
-            }
-        })
+    response = jsonify(events_summary_response(rows))
     return make_response(response, 200)
 
 def events_summary_response(events):

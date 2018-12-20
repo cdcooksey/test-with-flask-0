@@ -1,22 +1,30 @@
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
+<section class="hero is-info">
+	<div class="hero-body">
+		<h1 class="title">{{ title }}</h1>
+		<h2 class="subtitle">{{ subtitle }}</h2>
+	</div>
+</section>
+
+<div class="columns">
+	<div class="column">
+		<h2>Event list</h2>
+		Page: {{ page }}<br />
+		# of events found: {{ events.length }}<br />
+		<span (click)="previousPage()">Previous</span><br />
+		<span (click)="nextPage()">Next Page</span><br />
+	</div>
 </div>
 
-<h2>Event list</h2>
-<br />
-<h3>
-	Page: {{ page }}<br />
-	# of events found: {{ events.length }}<br />
-	<span (click)="previousPage()">Previous</span><br />
-	<span (click)="nextPage()">Next Page</span><br />
-</h3>
+<div class="container">
+	<div class="notification">
+		<div class="columns">
+			<div class="column"><strong>Name</strong></div>
+			<div class="column"><strong>Venue</strong></div>
+		</div>
 
-<ul>
-	<li *ngFor="let event of events" (click)="onSelect(event)">
-		<strong>Event</strong> {{ event.name }}
-		<br />
-		<strong>Venue</strong> {{ event.venue }}
-	</li>
-<ul>
+		<div class="columns" *ngFor="let event of events" (click)="onSelect(event)">
+			<div class="column">{{ event.name }}</div>
+			<div class="column">{{ event.venue }}</div>
+		</div>
+	</div>
+</div>

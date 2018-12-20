@@ -13,4 +13,7 @@ export class EventsService {
   getEvents(page: number): Observable<any> {
 		return this.http.get(`${this.baseUrl}/events?page=${page}`);
   }
+  getEventDetails(eventId: number) {
+    return this.http.get(`${this.baseUrl}/events/${eventId}`);
+  }
 }

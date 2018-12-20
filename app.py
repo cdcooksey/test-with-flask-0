@@ -8,11 +8,13 @@ from flask import Flask, jsonify, request, abort, make_response
 from peewee import *
 from playhouse.flask_utils import FlaskDB
 from playhouse.shortcuts import model_to_dict
+from flask_cors import CORS
 
 DATABASE = SqliteDatabase('data.db')
 
 app = Flask(__name__)
 app.config.from_object(__name__)
+CORS(app)
 
 db_wrapper = FlaskDB(app)
 peewee_db = db_wrapper.database

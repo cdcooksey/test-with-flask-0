@@ -9,13 +9,17 @@ import { EventsService } from './events.service';
 
 export class AppComponent implements OnInit {
   title = 'DNC Events Challenge';
+	page: number;
 
-  constructor(private eventsService: EventsService) { }
+  constructor(private eventsService: EventsService) {
+		this.page = 0;
+	}
 
 	ngOnInit() {
 		return this.getEvents();
 	}
+
 	getEvents(): void {
-		this.eventsService.getEvents(2).subscribe();
+		this.eventsService.getEvents(this.page).subscribe();
 	}
 }

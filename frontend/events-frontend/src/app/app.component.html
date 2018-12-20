@@ -20,11 +20,23 @@
 		<div class="columns">
 			<div class="column"><strong>Name</strong></div>
 			<div class="column"><strong>Venue</strong></div>
+			<div class="column"><strong>Location</strong></div>
 		</div>
 
 		<div class="columns" *ngFor="let event of events" (click)="onSelect(event)">
 			<div class="column">{{ event.name }}</div>
 			<div class="column">{{ event.venue }}</div>
+			<div class="column">
+        {{ event.address1 }}
+        <span *ngIf="event.address2">
+          <br />
+          {{ event.address2 }}
+        </span>
+        <br />
+        {{ event.city }},
+        {{ event.state }}
+        {{ event.postal_code }}
+      </div>
 		</div>
 	</div>
 </div>

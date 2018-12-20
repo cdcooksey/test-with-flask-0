@@ -8,10 +8,10 @@ import { EventsService } from './events.service';
 })
 
 export class AppComponent implements OnInit {
-	title = 'Events';
+  title = 'Events';
   subtitle = 'DNC Code Challenge';
-	page: number;
-	events: Array<any>;
+  page: number;
+  events: Array<any>; // TODO Create Event model and cast as Array<Event>
 
   constructor(private eventsService: EventsService) {
 		this.page = 0;

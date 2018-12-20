@@ -45,7 +45,16 @@ def events_summary():
         offset = page * delimiter
 
     rows = (Event
-              .select(Event.id, Event.name, Location.name)
+              .select(Event.id,
+                      Event.name,
+                      Event.start_date,
+                      Event.end_date,
+                      Location.name,
+                      Location.address1,
+                      Location.address2,
+                      Location.city,
+                      Location.state,
+                      Location.postal_code)
               .join(Location, on=(Location.event == Event.id))
               .limit(limit)
               .offset(offset))
@@ -56,6 +65,13 @@ def events_summary():
 def events_summary_response(events):
     return [{'id': event.id,
              'name': event.name,
+             'start_date': event.start_date,
+             'end_date': event.end_date,
+             'address1': event.location.address1,
+             'address2': event.location.address2,
+             'city': event.location.city,
+             'state': event.location.state,
+             'postal_code': event.location.postal_code,
              'venue': event.location.name} for event in events]
 
 @app.route('/api/v1/events/<int:eventId>', methods=['PUT'])

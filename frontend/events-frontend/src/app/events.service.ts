@@ -10,7 +10,7 @@ export class EventsService {
 
   constructor(private http: HttpClient) { }
 
-  getEvents(): Observable<any> {
-		return this.http.get(`${this.baseUrl}/events`);
+  getEvents(page: number): Observable<any> {
+		return this.http.get(`${this.baseUrl}/events?page=${page}`);
   }
 }

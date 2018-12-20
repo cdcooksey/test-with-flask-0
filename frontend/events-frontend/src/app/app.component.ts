@@ -16,6 +16,6 @@ export class AppComponent implements OnInit {
 		return this.getEvents();
 	}
 	getEvents(): void {
-		this.eventsService.getEvents().subscribe();
+		this.eventsService.getEvents(2).subscribe();
 	}
 }

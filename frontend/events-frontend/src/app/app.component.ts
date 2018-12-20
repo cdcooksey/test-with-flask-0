@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   subtitle = 'DNC Code Challenge';
   page:   number;
   events: Array<any>; // TODO Create Event model and cast as Array<Event>
+  selectedEvent: any; // TODO Use Event model
 
   constructor(private eventsService: EventsService) {
     this.page = 0;
@@ -28,14 +29,18 @@ export class AppComponent implements OnInit {
       .subscribe(events => this.addEvents(events));
   }
 
+  // TODO Cast events as Array<Event>
   addEvents(events: Array<any>) {
     for(let event of events) {
       this.events.push(event);
     }
   }
 
-  onSelect() {
-    return 'do nothing';
+  // TODO Cast event as Event model
+  onSelect(event: any) {
+    this.eventsService
+      .getEventDetails(event.id)
+      .subscribe(event => this.selectedEvent = event);
   }
 
   previousPage() {

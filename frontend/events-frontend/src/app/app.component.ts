@@ -8,19 +8,19 @@ import { EventsService } from './events.service';
 })
 
 export class AppComponent implements OnInit {
-  title = 'Events';
+  title    = 'Events';
   subtitle = 'DNC Code Challenge';
-  page: number;
+  page:   number;
   events: Array<any>; // TODO Create Event model and cast as Array<Event>
 
   constructor(private eventsService: EventsService) {
-		this.page = 0;
-		this.events = [];
-	}
+    this.page = 0;
+    this.events = [];
+  }
 
-	ngOnInit() {
-		return this.getEvents();
-	}
+  ngOnInit() {
+    return this.getEvents();
+  }
 
   getEvents(): void {
     this.eventsService

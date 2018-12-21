@@ -44,6 +44,10 @@ export class AppComponent implements OnInit {
       .subscribe(event => this.selectedEvent = event);
   }
 
+  closeDetails() {
+    this.selectedEvent = false;
+  }
+
   previousPage() {
     if(this.page > 0) {
       this.page--;
@@ -59,5 +63,12 @@ export class AppComponent implements OnInit {
 
   attend(event: any) {
     console.log(event);
+  }
+
+  showDetails(event: any) {
+    if(this.selectedEvent && this.selectedEvent.id == event.id) {
+      return true;
+    }
+    return false;
   }
 }

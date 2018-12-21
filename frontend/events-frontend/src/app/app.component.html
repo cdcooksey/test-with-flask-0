@@ -54,18 +54,17 @@
         <a class="button" (click)="attend(event)">Attend</a>
       </div>
     </div>
-  </div>
 
-  <div class="columns" *ngIf="showDetails()">
-    <div class="column">
-      <strong>Attending:</strong> {{ selectedEvent.participant_count }}
-      <br />
-      <strong>Description:</strong>
-      {{ selectedEvent.description }}
-      <br />
-      <a class="button" (click)="closeDetails()">Close</a>
+    <div class="columns" *ngIf="showDetails()">
+      <div class="column">
+        <strong>Attending:</strong> {{ selectedEvent.participant_count }}
+        <br />
+        <strong>Description:</strong>
+        {{ selectedEvent.description }}
+        <br />
+        <a class="button" (click)="closeDetails()">Close</a>
+      </div>
     </div>
-  </div>
 </div>
 
 <div class="columns">

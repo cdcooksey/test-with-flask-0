@@ -25,19 +25,20 @@
 </div>
 
 <div class="container">
-	<div class="notification">
-		<div class="columns">
-			<div class="column"><strong>Name</strong></div>
-			<div class="column"><strong>Venue</strong></div>
-			<div class="column"><strong>Location</strong></div>
-			<div class="column"><strong>Date</strong></div>
-      <div class="column"><!-- attend button column --></div>
-		</div>
+  <div class="notification">
 
-		<div class="columns" *ngFor="let event of events" (click)="onSelect(event)">
-			<div class="column">{{ event.name }}</div>
-			<div class="column">{{ event.venue }}</div>
-			<div class="column">
+    <div class="columns">
+      <div class="column"><strong>Name</strong></div>
+      <div class="column"><strong>Venue</strong></div>
+      <div class="column"><strong>Location</strong></div>
+      <div class="column"><strong>Date</strong></div>
+      <div class="column"><!-- attend button column --></div>
+    </div>
+
+    <div class="columns" *ngFor="let event of events" (click)="onSelect(event)">
+      <div class="column">{{ event.name }}</div>
+      <div class="column">{{ event.venue }}</div>
+      <div class="column">
         {{ event.address1 }}
         <span *ngIf="event.address2">
           <br />
@@ -49,9 +50,12 @@
         {{ event.postal_code }}
       </div>
       <div class="column">{{ event.start_date }}</div>
-      <div class="column"><button (click)="attend(event)">Attend</button>
-		</div>
-	</div>
+      <div class="column">
+        <button (click)="attend(event)">Attend</button>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <div class="columns">

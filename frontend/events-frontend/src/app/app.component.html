@@ -13,12 +13,16 @@
 </div>
 
 <div class="columns">
+  <div class="column has-text-right">
+    <span (click)="previousPage()"><< Previous</span><br />
+  </div>
 	<div class="column is-size-5 has-text-centered">
-		Page: {{ page }}<br />
+		Page: {{ page + 1}}<br />
 		# of events found: {{ events.length }}<br />
-		<span (click)="previousPage()">Previous</span><br />
-		<span (click)="nextPage()">Next Page</span><br />
 	</div>
+  <div class="column has-text-left">
+    <span (click)="nextPage()">Next >></span><br />
+  </div>
 </div>
 
 <div class="container">

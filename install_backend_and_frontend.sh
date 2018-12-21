@@ -5,6 +5,8 @@ cd /vagrant/backend/
 ./install.sh
 
 echo "---------------------------------------------------"
+echo "                                                   "
+echo "                                                   "
 echo " The backend will run now automatically.  You      "
 echo " can access the backend directly at these endpoints"
 echo " endpoints:                                        "

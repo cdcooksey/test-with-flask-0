@@ -1,6 +1,4 @@
-cd frontend/
-./install_frontend.sh
-cd ../../backend/
+/vagrant/frontend/install_frontend.sh
 
 echo "----------------------------------------------"
 echo " The backend will run now automatically. Run  "
@@ -13,4 +11,4 @@ echo " After kicking off the frontend, open a web   "
 echo " browser and go to: http://0.0.0.0:4200/      "
 echo "----------------------------------------------"
 
-./run_flask.sh
+/vagrant/backend/run_flask.sh

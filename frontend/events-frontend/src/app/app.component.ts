@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
   }
 
   // TODO Cast event as Event model
-  onSelect(event: any) {
+  fetchDetails(event: any) {
     this.eventsService
       .getEventDetails(event.id)
       .subscribe(event => this.selectedEvent = event);
@@ -69,6 +69,7 @@ export class AppComponent implements OnInit {
     if(this.selectedEvent) {
       return true;
     }
+
     return false;
   }
 }

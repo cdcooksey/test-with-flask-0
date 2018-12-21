@@ -1,0 +1,29 @@
+You will need two terminal windows/tabs to run both the backend and frontend.
+One one terminal, build and run the backend.  In another terminal, build and
+run the frontend.
+
+Backend:
+	With install script:
+		cd backend
+		./run_flask
+
+	--OR-- 
+
+	Manual package install:
+		python get-pip.py --user
+		pip install flask --user
+		pip install peewee --user
+		pip install flask-cors --user
+
+	Run backend with:
+	FLASK_APP=app.py FLASK_ENV=development flask run --host=0.0.0.0
+
+Frontend:
+
+	Install:
+		cd frontend/
+		./install_frontend.sh
+
+	Run frontend:
+		cd frontend/events-frontend/
+		./run_angular.sh

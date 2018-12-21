@@ -107,10 +107,3 @@ Locations:
     spaces_remaining (Boolean)
     name (String)
 ```
-# test-with-flask-0
-
-
-```bash
-pip install flask
-pip install peewee
-```

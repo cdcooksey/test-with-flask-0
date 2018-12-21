@@ -1,4 +1,4 @@
-cd frontend/events-frontend/
+cd frontend/
 ./install_frontend.sh
 cd ../../backend/
 

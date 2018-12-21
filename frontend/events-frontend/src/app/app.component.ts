@@ -65,8 +65,16 @@ export class AppComponent implements OnInit {
     console.log(event);
   }
 
-  showDetails() {
-    if(this.selectedEvent) {
+  showDetails(event: any) {
+    if(!this.selectedEvent) {
+      return false;
+    }
+
+    if(!event) {
+      return false;
+    }
+
+    if(this.selectedEvent.id == event.id) {
       return true;
     }
 

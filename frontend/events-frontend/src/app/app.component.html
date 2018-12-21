@@ -35,36 +35,39 @@
       <div class="column"><!-- attend button column --></div>
     </div>
 
-    <div class="columns" *ngFor="let event of events" (click)="fetchDetails(event)">
-      <div class="column">{{ event.name }}</div>
-      <div class="column">{{ event.venue }}</div>
-      <div class="column">
-        {{ event.address1 }}
-        <span *ngIf="event.address2">
+    <span *ngFor="let event of events">
+      <div class="columns" (click)="fetchDetails(event)">
+        <div class="column">{{ event.name }}</div>
+        <div class="column">{{ event.venue }}</div>
+        <div class="column">
+          {{ event.address1 }}
+          <span *ngIf="event.address2">
+            <br />
+            {{ event.address2 }}
+          </span>
           <br />
-          {{ event.address2 }}
-        </span>
-        <br />
-        {{ event.city }},
-        {{ event.state }}
-        {{ event.postal_code }}
+          {{ event.city }},
+          {{ event.state }}
+          {{ event.postal_code }}
+        </div>
+        <div class="column">{{ event.start_date }}</div>
+        <div class="column">
+          <a class="button" (click)="attend(event)">Attend</a>
+        </div>
       </div>
-      <div class="column">{{ event.start_date }}</div>
-      <div class="column">
-        <a class="button" (click)="attend(event)">Attend</a>
-      </div>
-    </div>
 
-    <div class="columns" *ngIf="showDetails()">
-      <div class="column">
-        <strong>Attending:</strong> {{ selectedEvent.participant_count }}
-        <br />
-        <strong>Description:</strong>
-        {{ selectedEvent.description }}
-        <br />
-        <a class="button" (click)="closeDetails()">Close</a>
+      <div class="columns" *ngIf="showDetails(event)">
+        <div class="column">
+          <strong>Attending:</strong> {{ selectedEvent.participant_count }}
+          <br />
+          <strong>Description:</strong>
+          {{ selectedEvent.description }}
+          <br />
+          <a class="button" (click)="closeDetails()">Close</a>
+        </div>
       </div>
-    </div>
+    </span>
+  </div>
 </div>
 
 <div class="columns">

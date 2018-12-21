@@ -35,25 +35,36 @@
       <div class="column"><!-- attend button column --></div>
     </div>
 
-    <div class="columns" *ngFor="let event of events" (click)="onSelect(event)">
-      <div class="column">{{ event.name }}</div>
-      <div class="column">{{ event.venue }}</div>
-      <div class="column">
-        {{ event.address1 }}
-        <span *ngIf="event.address2">
+    <span *ngFor="let event of events">
+      <div class="columns" (click)="onSelect(event)">
+        <div class="column">{{ event.name }}</div>
+        <div class="column">{{ event.venue }}</div>
+        <div class="column">
+          {{ event.address1 }}
+          <span *ngIf="event.address2">
+            <strong>Attending:</strong> {{ event.participant_count }}
+            <br />
+            {{ event.address2 }}
+          </span>
           <br />
-          {{ event.address2 }}
-        </span>
-        <br />
-        {{ event.city }},
-        {{ event.state }}
-        {{ event.postal_code }}
+          {{ event.city }},
+          {{ event.state }}
+          {{ event.postal_code }}
+        </div>
+        <div class="column">{{ event.start_date }}</div>
+        <div class="column">
+          <a class="button" (click)="attend(event)">Attend</a>
+        </div>
       </div>
-      <div class="column">{{ event.start_date }}</div>
-      <div class="column">
-        <button (click)="attend(event)">Attend</button>
+
+      <div class="columns" *ngIf="showDetails()">
+        <div class="column">
+          {{ event.description }}
+          <br />
+          <a class="button" (click)="closeDetails()">Close</a>
+        </div>
       </div>
-    </div>
+    </span>
 
   </div>
 </div>

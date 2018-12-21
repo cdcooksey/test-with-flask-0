@@ -62,7 +62,9 @@ export class AppComponent implements OnInit {
   }
 
   attend(event: any) {
-    console.log(event);
+    this.eventsService
+      .updateEvent(event.id)
+      .subscribe(_response => this.fetchDetails(event));
   }
 
   showDetails(event: any) {

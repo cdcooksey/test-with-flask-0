@@ -25,6 +25,8 @@ Python Flask API running.  In the second window, do:
   $ cd frontend/events-frontend/
   $ ./run_angular.sh
 
+Open web brower, go to:  http://0.0.0.0:4200/
+
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 --------------------------- Manual  install details ----------------------

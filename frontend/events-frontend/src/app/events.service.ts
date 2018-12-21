@@ -16,4 +16,11 @@ export class EventsService {
   getEventDetails(eventId: number) {
     return this.http.get(`${this.baseUrl}/events/${eventId}`);
   }
+
+  // TODO Consider better name for this as all it does on the backend is
+  // increment the participant_count.
+  updateEvent(eventId: number) {
+    let payload = {}; // We have no data to send but must send something
+    return this.http.put(`${this.baseUrl}/events/${eventId}`, payload);
+  }
 }

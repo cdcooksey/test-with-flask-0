@@ -2,6 +2,34 @@ You will need two terminal windows/tabs to run both the backend and frontend.
 One one terminal, build and run the backend.  In another terminal, build and
 run the frontend.
 
+
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+---------------- Easiest path for install and running --------------------
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+
+Open a terminal an do:
+  $ vagrant up
+  $ vagrant ssh
+  $ ./install_backend_and_frontend.sh
+
+  This will build the frontend, install the backend, and kick off
+  the backend API.  The frontend will need to be kicked off in a 
+  second terminal.
+
+Open another termin window, leave the first terminal running the
+Python Flask API running.  In the second window, do:
+
+  $ cd frontend/events-frontend/
+  $ ./run_angular.sh
+
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+--------------------------- Manual  install details ----------------------
+--------------------------------------------------------------------------
+----------------------------- optional -----------------------------------
+
 Backend:
 	With install script:
 		cd backend

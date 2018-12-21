@@ -21,6 +21,7 @@ Open a terminal an do:
 Open another termin window, leave the first terminal running the
 Python Flask API running.  In the second window, do:
 
+  $ vagrant ssh
   $ cd frontend/events-frontend/
   $ ./run_angular.sh
 

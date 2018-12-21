@@ -5,9 +5,15 @@
 	</div>
 </section>
 
+
 <div class="columns">
-	<div class="column">
-		<h2>Event list</h2>
+  <div class="column is-size-2 has-text-centered has-text-weight-bold">
+    Event list
+  </div>
+</div>
+
+<div class="columns">
+	<div class="column is-size-5 has-text-centered">
 		Page: {{ page }}<br />
 		# of events found: {{ events.length }}<br />
 		<span (click)="previousPage()">Previous</span><br />

@@ -17,8 +17,7 @@
     <span (click)="previousPage()"><< Previous</span><br />
   </div>
 	<div class="column is-size-5 has-text-centered">
-		Page: {{ page + 1}}<br />
-		# of events found: {{ events.length }}<br />
+		Page: {{ page + 1}}
 	</div>
   <div class="column has-text-left">
     <span (click)="nextPage()">Next >></span><br />
@@ -53,4 +52,10 @@
       <div class="column"><button (click)="attend(event)">Attend</button>
 		</div>
 	</div>
+</div>
+
+<div class="columns">
+  <div class="column has-text-centered">
+    Number of events found: {{ events.length }}<br />
+  </div>
 </div>

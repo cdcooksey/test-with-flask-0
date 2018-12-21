@@ -15,4 +15,5 @@ npm install -g @angular/cli
 cd /home/vagrant/.local/bin/
 ln -s /vagrant/frontend/node/node-v10.14.2-linux-x64/lib/node_modules/@angular/cli/bin/ng ng
 cd /vagrant/frontend/events-frontend
+sudo npm install -g @angular/cli
 npm install

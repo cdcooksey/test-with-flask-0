@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
   }
 
   getEvents(): void {
+    this.events = []; // TODO Use redux / reducer to cut down on API calls.
     this.eventsService
       .getEvents(this.page)
       .subscribe(events => this.addEvents(events));

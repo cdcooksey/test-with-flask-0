@@ -52,7 +52,7 @@
         </div>
         <div class="column">{{ event.start_date }}</div>
         <div class="column">
-          <a class="button" (click)="attend(event)">Attend</a>
+          <a class="button">Details</a>
         </div>
       </div>
 
@@ -63,9 +63,14 @@
           <strong>Description:</strong>
           {{ selectedEvent.description }}
           <br />
+          <a class="button" (click)="attend(event)">Attend</a>
+          <br />
           <a class="button" (click)="closeDetails()">Close</a>
+          <br />
+          <hr />
         </div>
       </div>
+
     </span>
   </div>
 </div>
